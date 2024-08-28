@@ -1,4 +1,4 @@
-version: "3.8"
+version: '3.8'
 services:
   mysql:
     image: mysql:8.0
@@ -9,7 +9,9 @@ services:
       MYSQL_DATABASE: db_crud
       MYSQL_USER: user_crud
       MYSQL_PASSWORD: root
+      TZ: America/La_Paz # Set time zone to Bolivia
     volumes:
       - ./mysql:/var/lib/mysql
     ports:
-      - "3307:3306"
+      - '3307:3306'
+
