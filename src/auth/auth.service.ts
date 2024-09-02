@@ -31,7 +31,7 @@ export class AuthService {
   }
 
   async login({ email, password }: LoginDto) {
-    const user = await this.userService.findOneByEmail(email);
+    const user = await this.userService.findByEmailWithPassword(email);
     console.log('usuario: ', user);
 
     if (!user) {
