@@ -11,7 +11,7 @@ export class User {
      @Column({nullable:false})
      password: string;
      @Column({default: 'user'})
-     rol: string;
+     role: string;
      @DeleteDateColumn()
      deletedAtDate;
      @Column()
