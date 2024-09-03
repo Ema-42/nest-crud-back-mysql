@@ -13,7 +13,7 @@ async function bootstrap() {
       transform: true,
     }),
   );
-  await app.listen(3000);
+  await app.listen(parseInt(process.env.POSTGRES_PORT));
 }
 bootstrap();
 
