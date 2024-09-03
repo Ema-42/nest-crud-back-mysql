@@ -26,13 +26,10 @@ export class AuthService {
     });
 
     return { name, email };
-
-    //metodo create de user service
   }
 
   async login({ email, password }: LoginDto) {
     const user = await this.userService.findByEmailWithPassword(email);
-    console.log('usuario: ', user);
 
     if (!user) {
       throw new UnauthorizedException('email is wrong !');
@@ -49,7 +46,6 @@ export class AuthService {
     /*     if(role !== 'admin'){
       throw new UnauthorizedException('No access')
     } */
-
     return await this.userService.findOneByEmail(email);
   }
 }

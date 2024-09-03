@@ -36,10 +36,7 @@ export class AuthController {
   //este decorador contiene a otros
   @Auth(Role.USER)
   profile(@ActiveUser() user: UserActiveInterface) {
-    console.log(user);
-
     return this.authService.profile(user);
   }
 }
-
 
