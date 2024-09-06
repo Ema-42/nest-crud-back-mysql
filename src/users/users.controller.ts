@@ -1,7 +1,21 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Put,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UserToAdminDto } from './dto/usertoAdmin.dto';
+import { ActiveUser } from 'src/common/decorators/active-user.decorator';
+import { UserActiveInterface } from 'src/common/interfaces/user-active.interface';
+import { Auth } from 'src/decorators/auth.decorator';
+import { Role } from 'src/common/enums/rol.enum';
 
 @Controller('users')
 export class UsersController {
@@ -19,7 +33,7 @@ export class UsersController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
+    return "un user"
   }
 
   @Patch(':id')
@@ -27,8 +41,18 @@ export class UsersController {
     return this.usersService.update(+id, updateUserDto);
   }
 
+  @Auth(Role.USER)
+  @Put('toadmin/:id')
+  userToAdmin(
+    @Param('id') id: number,
+    @ActiveUser() user: UserActiveInterface,
+  ) {
+    return this.usersService.userToAdmin(id, user);
+  }
+
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.usersService.remove(+id);
   }
 }
+

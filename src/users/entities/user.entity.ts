@@ -21,6 +21,8 @@ export class User {
   role: string;
   @DeleteDateColumn()
   deletedAtDate;
+  @Column({ nullable: true })
+  userEmail: string;
   @Column()
   @CreateDateColumn()
   createdAt: Date;
