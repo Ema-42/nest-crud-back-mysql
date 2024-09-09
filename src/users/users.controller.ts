@@ -17,6 +17,10 @@ import { UserActiveInterface } from 'src/common/interfaces/user-active.interface
 import { Auth } from 'src/decorators/auth.decorator';
 import { Role } from 'src/common/enums/rol.enum';
 
+
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+
+@ApiTags('users')
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
@@ -41,6 +45,7 @@ export class UsersController {
     return this.usersService.update(+id, updateUserDto);
   }
 
+  @ApiBearerAuth()
   @Auth(Role.USER)
   @Put('toadmin/:id')
   userToAdmin(
