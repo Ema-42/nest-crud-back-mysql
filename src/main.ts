@@ -13,7 +13,7 @@ async function bootstrap() {
       transform: true,
     }),
   );
-
+  app.enableCors();
   const config = new DocumentBuilder()
     .setTitle('Documentacion Swagger API login-crud cats')
     .setDescription('The cats API description')
@@ -24,7 +24,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
 
-  await app.listen(parseInt(process.env.PORT) || 3000);
+  await app.listen(parseInt(process.env.PORT) || 5173);
 }
 bootstrap();
 
